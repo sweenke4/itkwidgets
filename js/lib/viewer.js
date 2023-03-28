@@ -514,10 +514,10 @@ async function decompressImage (image) {
   const args = ['input.bin', 'output.bin', String(numberOfBytes)]
   const desiredOutputs = [{ path: 'output.bin', type: IOTypes.Binary }]
   const inputs = [{ path: 'input.bin', type: IOTypes.Binary, data: byteArray }]
-  console.log(`input MB: ${byteArray.length / 1000 / 1000}`)
-  console.log(`output MB: ${numberOfBytes / 1000 / 1000}`)
+  //console.log(`input MB: ${byteArray.length / 1000 / 1000}`)
+  //console.log(`output MB: ${numberOfBytes / 1000 / 1000}`)
   const compressionAmount = byteArray.length / numberOfBytes
-  console.log(`compression amount: ${compressionAmount}`)
+  //console.log(`compression amount: ${compressionAmount}`)
   const t0 = performance.now()
   const taskArgsArray = [[pipelinePath, args, desiredOutputs, inputs]]
   const results = await workerPool.runTasks(taskArgsArray)
@@ -525,7 +525,7 @@ async function decompressImage (image) {
   const duration = Number(t1 - t0)
     .toFixed(1)
     .toString()
-  console.log('decompression took ' + duration + ' milliseconds.')
+  //console.log('decompression took ' + duration + ' milliseconds.')
 
   const decompressed = results[0].outputs[0].data
   switch (image.imageType.componentType) {
@@ -578,10 +578,10 @@ function decompressDataValue (polyData, prop) {
   const args = ['input.bin', 'output.bin', String(numberOfBytes)]
   const desiredOutputs = [{ path: 'output.bin', type: IOTypes.Binary }]
   const inputs = [{ path: 'input.bin', type: IOTypes.Binary, data: byteArray }]
-  console.log(`${prop} input MB: ${byteArray.length / 1000 / 1000}`)
-  console.log(`${prop} output MB: ${numberOfBytes / 1000 / 1000}`)
+  //console.log(`${prop} input MB: ${byteArray.length / 1000 / 1000}`)
+  //console.log(`${prop} output MB: ${numberOfBytes / 1000 / 1000}`)
   const compressionAmount = byteArray.length / numberOfBytes
-  console.log(`${prop} compression amount: ${compressionAmount}`)
+  //console.log(`${prop} compression amount: ${compressionAmount}`)
   const t0 = performance.now()
   return runPipelineBrowser(
     null,
@@ -595,7 +595,7 @@ function decompressDataValue (polyData, prop) {
     const duration = Number(t1 - t0)
       .toFixed(1)
       .toString()
-    console.log(`${prop} decompression took ${duration} milliseconds.`)
+    //console.log(`${prop} decompression took ${duration} milliseconds.`)
     polyData[prop].values = new window[polyData[prop].dataType](
       outputs[0].data.buffer
     )
@@ -622,10 +622,10 @@ async function decompressPolyData (polyData) {
     const inputs = [
       { path: 'input.bin', type: IOTypes.Binary, data: byteArray }
     ]
-    console.log(`${prop} input MB: ${byteArray.length / 1000 / 1000}`)
-    console.log(`${prop} output MB: ${numberOfBytes / 1000 / 1000}`)
+    //console.log(`${prop} input MB: ${byteArray.length / 1000 / 1000}`)
+    //console.log(`${prop} output MB: ${numberOfBytes / 1000 / 1000}`)
     const compressionAmount = byteArray.length / numberOfBytes
-    console.log(`${prop} compression amount: ${compressionAmount}`)
+    //console.log(`${prop} compression amount: ${compressionAmount}`)
     taskArgsArray.push([pipelinePath, args, desiredOutputs, inputs])
     decompressedProps.push(prop)
   }
@@ -644,10 +644,10 @@ async function decompressPolyData (polyData) {
       const inputs = [
         { path: 'input.bin', type: IOTypes.Binary, data: byteArray }
       ]
-      console.log(`${array} input MB: ${byteArray.length / 1000 / 1000}`)
-      console.log(`${array} output MB: ${numberOfBytes / 1000 / 1000}`)
+      //console.log(`${array} input MB: ${byteArray.length / 1000 / 1000}`)
+      //console.log(`${array} output MB: ${numberOfBytes / 1000 / 1000}`)
       const compressionAmount = byteArray.length / numberOfBytes
-      console.log(`${array} compression amount: ${compressionAmount}`)
+      //console.log(`${array} compression amount: ${compressionAmount}`)
       taskArgsArray.push([pipelinePath, args, desiredOutputs, inputs])
       decompressedPointData.push(array)
     }
@@ -667,10 +667,10 @@ async function decompressPolyData (polyData) {
       const inputs = [
         { path: 'input.bin', type: IOTypes.Binary, data: byteArray }
       ]
-      console.log(`${array} input MB: ${byteArray.length / 1000 / 1000}`)
-      console.log(`${array} output MB: ${numberOfBytes / 1000 / 1000}`)
+      //console.log(`${array} input MB: ${byteArray.length / 1000 / 1000}`)
+      //console.log(`${array} output MB: ${numberOfBytes / 1000 / 1000}`)
       const compressionAmount = byteArray.length / numberOfBytes
-      console.log(`${array} compression amount: ${compressionAmount}`)
+      //console.log(`${array} compression amount: ${compressionAmount}`)
       taskArgsArray.push([pipelinePath, args, desiredOutputs, inputs])
       decompressedCellData.push(array)
     }
@@ -682,7 +682,7 @@ async function decompressPolyData (polyData) {
   const duration = Number(t1 - t0)
     .toFixed(1)
     .toString()
-  console.log(`PolyData decompression took ${duration} milliseconds.`)
+  //console.log(`PolyData decompression took ${duration} milliseconds.`)
   for (let index = 0; index < decompressedProps.length; index++) {
     const prop = decompressedProps[index]
     polyData[prop].values = new window[polyData[prop].dataType](
